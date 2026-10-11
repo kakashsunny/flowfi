@@ -115,14 +115,14 @@ export const SubscriptionsPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => toggleSubscription(sub.id)}
-                      className="px-2.5 py-1 text-xs font-medium rounded border border-[#252B44] text-slate-300 hover:text-white hover:bg-[#1A1E32] transition-colors"
+                      className="min-h-[44px] px-3.5 py-2 text-xs font-semibold rounded-lg border border-[#252B44] text-slate-300 hover:text-white hover:bg-[#1A1E32] transition-colors flex items-center justify-center active:scale-95"
                     >
                       {sub.isActive ? 'Pause' : 'Resume'}
                     </button>
                     <button
                       onClick={() => deleteSubscription(sub.id)}
                       aria-label={`Delete subscription ${sub.name}`}
-                      className="text-slate-500 hover:text-rose-400 p-1.5 rounded transition-colors"
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-rose-400 p-2.5 rounded-lg transition-colors active:scale-95"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

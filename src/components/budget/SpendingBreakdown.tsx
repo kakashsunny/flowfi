@@ -26,7 +26,7 @@ export const SpendingBreakdown: React.FC<SpendingBreakdownProps> = ({
   const activeCategories = categories.filter((c) => c.total > 0);
 
   return (
-    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-5">
+    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-4 sm:p-5 w-full min-w-0 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-semibold text-white tracking-tight">
           Category Spending Breakdown

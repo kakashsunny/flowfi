@@ -38,32 +38,34 @@ export const Modal: React.FC<ModalProps> = ({
       aria-modal="true"
       aria-labelledby="modal-title"
       aria-describedby={description ? 'modal-description' : undefined}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center sm:p-4 bg-black/80 backdrop-blur-md animate-fadeIn"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="relative w-full max-w-lg bg-[#111322] border border-[#232842] rounded-2xl p-6 shadow-2xl animate-scaleUp">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div>
-            <h2 id="modal-title" className="text-lg font-bold text-white tracking-tight">
-              {title}
-            </h2>
-            {description && (
-              <p id="modal-description" className="text-xs text-slate-400 mt-1">
-                {description}
-              </p>
-            )}
+      <div className="relative w-full h-full sm:h-auto max-h-full sm:max-w-lg bg-[#111322] border-0 sm:border sm:border-[#232842] rounded-none sm:rounded-2xl p-5 sm:p-6 shadow-2xl animate-scaleUp overflow-y-auto flex flex-col justify-between sm:justify-start">
+        <div>
+          <div className="flex items-start justify-between gap-4 mb-4 pb-2 border-b border-[#1E2338] sm:border-0 sm:pb-0">
+            <div>
+              <h2 id="modal-title" className="text-lg font-bold text-white tracking-tight">
+                {title}
+              </h2>
+              {description && (
+                <p id="modal-description" className="text-sm sm:text-xs text-slate-400 mt-1">
+                  {description}
+                </p>
+              )}
+            </div>
+            <button
+              onClick={onClose}
+              aria-label="Close dialog"
+              className="text-slate-400 hover:text-white p-2.5 rounded-lg hover:bg-[#1C2036] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center -mr-1"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            aria-label="Close dialog"
-            className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-[#1C2036] transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div>{children}</div>
         </div>
-        <div>{children}</div>
       </div>
     </div>
   );

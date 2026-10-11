@@ -98,7 +98,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
           <button
             onClick={onOpenAddExpense}
-            className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors"
+            className="min-h-[44px] px-3 py-2 text-sm font-semibold text-indigo-400 hover:text-indigo-300 transition-colors flex items-center"
           >
             + Add New
           </button>
@@ -115,21 +115,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               return (
                 <div
                   key={exp.id}
-                  className="py-3 flex items-center justify-between gap-3 text-xs group"
+                  className="py-3.5 flex items-center justify-between gap-3 text-xs group"
                 >
                   <div className="flex items-center gap-3 min-w-0">
                     <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                      className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
                         catMeta?.bgColor || 'bg-slate-800'
                       }`}
                     >
                       <ShoppingBag className={`w-4 h-4 ${catMeta?.color || 'text-slate-300'}`} />
                     </div>
                     <div className="min-w-0">
-                      <div className="font-semibold text-slate-100 truncate">
+                      <div className="font-semibold text-slate-100 text-sm truncate">
                         {exp.description}
                       </div>
-                      <div className="text-[11px] text-slate-400 flex items-center gap-1.5 mt-0.5">
+                      <div className="text-xs text-slate-400 flex items-center gap-1.5 mt-0.5">
                         <span>{catMeta?.name || exp.category}</span>
                         <span aria-hidden="true">·</span>
                         <span>{new Date(exp.date).toLocaleDateString()}</span>
@@ -137,16 +137,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="font-mono font-bold text-white text-sm">
+                  <div className="flex items-center gap-2 shrink-0">
+                    <span className="font-mono font-bold text-white text-base">
                       -₹{exp.amount.toLocaleString('en-IN')}
                     </span>
                     <button
                       onClick={() => budget.deleteExpense(exp.id)}
                       title="Delete expense"
-                      className="text-slate-600 hover:text-rose-400 p-1 rounded transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+                      aria-label={`Delete ${exp.description}`}
+                      className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-rose-400 p-2.5 rounded-lg transition-colors opacity-90 sm:opacity-0 group-hover:opacity-100 focus:opacity-100"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>

@@ -41,7 +41,7 @@ export const ForecastLine: React.FC<ForecastLineProps> = ({
   const areaPathD = `${projectedPathD} L ${getX(30)},${getY(0)} L ${getX(1)},${getY(0)} Z`;
 
   return (
-    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-5 space-y-4">
+    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-4 sm:p-5 space-y-4 w-full min-w-0 overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <h3 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
@@ -66,11 +66,12 @@ export const ForecastLine: React.FC<ForecastLineProps> = ({
         </div>
       </div>
 
-      {/* SVG Line Chart */}
-      <div className="relative w-full overflow-x-auto">
-        <svg
-          viewBox={`0 0 ${width} ${height}`}
-          className="w-full h-auto min-w-[500px] overflow-visible"
+      {/* SVG Line Chart with touch-friendly scroll containment */}
+      <div className="w-full min-w-0">
+        <div className="relative w-full overflow-x-auto pb-2">
+          <svg
+            viewBox={`0 0 ${width} ${height}`}
+            className="w-full h-auto min-w-[520px] overflow-visible"
           role="img"
           aria-label="30-day budget runway projection graph"
         >
@@ -208,6 +209,7 @@ export const ForecastLine: React.FC<ForecastLineProps> = ({
             )}
           </div>
         )}
+        </div>
       </div>
 
       <div className="text-[11px] text-slate-400">

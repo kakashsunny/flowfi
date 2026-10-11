@@ -1,6 +1,6 @@
 import React from 'react';
 import { Expense } from '../../types';
-import { Calendar, Flame } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 
 interface SpendingHeatmapProps {
   expenses: Expense[];
@@ -43,7 +43,7 @@ export const SpendingHeatmap: React.FC<SpendingHeatmapProps> = ({
   };
 
   return (
-    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-5 space-y-4">
+    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-4 sm:p-5 space-y-4 w-full min-w-0 overflow-hidden">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Calendar className="w-4 h-4 text-indigo-400" />
@@ -56,8 +56,8 @@ export const SpendingHeatmap: React.FC<SpendingHeatmapProps> = ({
         </span>
       </div>
 
-      {/* Grid of 30 days (5 rows x 6 cols or 3 x 10) */}
-      <div className="grid grid-cols-6 sm:grid-cols-10 gap-2">
+      {/* Grid of 30 days: responsive across 375px (6 cols) and desktop (10 cols) */}
+      <div className="grid grid-cols-6 sm:grid-cols-6 md:grid-cols-10 gap-1.5 sm:gap-2 w-full">
         {daysArray.map((day) => {
           const isToday = day === daysPassed;
           const isFuture = day > daysPassed;
@@ -66,7 +66,7 @@ export const SpendingHeatmap: React.FC<SpendingHeatmapProps> = ({
           return (
             <div
               key={day}
-              className={`flex flex-col items-center justify-center p-2 rounded-lg text-xs transition-transform hover:scale-105 select-none ${getIntensityClass(
+              className={`flex flex-col items-center justify-center p-1.5 sm:p-2 rounded-lg text-xs transition-transform hover:scale-105 select-none min-h-[44px] ${getIntensityClass(
                 amount,
                 isFuture,
                 isToday
@@ -74,7 +74,7 @@ export const SpendingHeatmap: React.FC<SpendingHeatmapProps> = ({
               title={`Day ${day}: ${isFuture ? 'Future' : `₹${amount.toLocaleString('en-IN')}`}`}
             >
               <span className="font-mono text-[10px] opacity-75">D{day}</span>
-              <span className="font-mono font-bold text-[11px] mt-0.5">
+              <span className="font-mono font-bold text-[11px] sm:text-xs mt-0.5">
                 {isFuture ? '-' : amount > 0 ? `₹${amount}` : '₹0'}
               </span>
             </div>
@@ -83,17 +83,17 @@ export const SpendingHeatmap: React.FC<SpendingHeatmapProps> = ({
       </div>
 
       {/* Heatmap Legend */}
-      <div className="flex flex-wrap items-center justify-between gap-3 text-[11px] text-slate-400 pt-2 border-t border-[#1C2036]">
+      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-400 pt-2 border-t border-[#1C2036]">
         <span>Darker = higher daily spend</span>
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded bg-[#15192B] border border-[#1E233B]" title="₹0" />
+          <span className="w-2.5 h-2.5 rounded bg-[#15192B] border border-[#1E233B]" title="₹0" />
           <span>₹0</span>
-          <span className="w-3 h-3 rounded bg-indigo-950/60 border border-indigo-900/60" title="<₹300" />
-          <span>&lt;₹300</span>
-          <span className="w-3 h-3 rounded bg-indigo-700/60" title="₹300-₹600" />
-          <span>₹300-₹600</span>
-          <span className="w-3 h-3 rounded bg-amber-600/70" title=">₹600" />
-          <span>&gt;₹600</span>
+          <span className="w-2.5 h-2.5 rounded bg-indigo-950/60 border border-indigo-900/60" title="<₹300" />
+          <span>&lt;300</span>
+          <span className="w-2.5 h-2.5 rounded bg-indigo-700/60" title="₹300-₹600" />
+          <span>300-600</span>
+          <span className="w-2.5 h-2.5 rounded bg-amber-600/70" title=">₹600" />
+          <span>&gt;600</span>
         </div>
       </div>
     </div>

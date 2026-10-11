@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SavingsGoal } from '../../types';
-import { Target, CheckCircle2, Clock, Trash2, Plus, Sparkles } from 'lucide-react';
+import { Target, Clock, Trash2, Plus } from 'lucide-react';
 import { Button } from '../ui/Button';
 
 interface GoalCardProps {
@@ -30,12 +30,12 @@ export const GoalCard: React.FC<GoalCardProps> = ({
   };
 
   return (
-    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-5 space-y-4 hover:border-[#272D4A] transition-all">
+    <div className="rounded-xl bg-[#111320] border border-[#1E2238] p-4 sm:p-5 space-y-4 hover:border-[#272D4A] transition-all">
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Target className="w-4 h-4 text-emerald-400" />
-            <h3 className="text-sm font-bold text-white tracking-tight">{goal.name}</h3>
+            <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">{goal.name}</h3>
           </div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
             <Clock className="w-3.5 h-3.5 text-slate-500" />
@@ -50,7 +50,7 @@ export const GoalCard: React.FC<GoalCardProps> = ({
         <button
           onClick={() => onDelete(goal.id)}
           aria-label={`Delete goal ${goal.name}`}
-          className="text-slate-500 hover:text-rose-400 p-1 rounded hover:bg-[#1B2036] transition-colors"
+          className="min-h-[44px] min-w-[44px] flex items-center justify-center text-slate-500 hover:text-rose-400 p-2.5 rounded-lg hover:bg-[#1B2036] transition-colors -mr-1"
         >
           <Trash2 className="w-4 h-4" />
         </button>
@@ -79,14 +79,14 @@ export const GoalCard: React.FC<GoalCardProps> = ({
       {/* Metrics Strip */}
       <div className="grid grid-cols-2 gap-2 text-xs py-2 border-t border-[#1C2036]">
         <div>
-          <span className="text-[11px] text-slate-400 block">Required Daily Save</span>
-          <span className="font-mono font-semibold text-slate-200">
+          <span className="text-xs text-slate-400 block">Required Daily Save</span>
+          <span className="font-mono font-semibold text-slate-200 text-sm">
             ₹{goal.dailyRequired}/day
           </span>
         </div>
         <div>
-          <span className="text-[11px] text-slate-400 block">Remaining to Target</span>
-          <span className="font-mono font-semibold text-slate-200">
+          <span className="text-xs text-slate-400 block">Remaining to Target</span>
+          <span className="font-mono font-semibold text-slate-200 text-sm">
             ₹{remaining.toLocaleString('en-IN')}
           </span>
         </div>
@@ -96,9 +96,9 @@ export const GoalCard: React.FC<GoalCardProps> = ({
       {!isCompleted && (
         <div>
           {showFundInput ? (
-            <div className="flex items-center gap-2 pt-1">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-1">
               <div className="relative flex-1">
-                <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center text-slate-400 text-xs font-mono">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm font-mono">
                   ₹
                 </span>
                 <input
@@ -108,30 +108,38 @@ export const GoalCard: React.FC<GoalCardProps> = ({
                   step="50"
                   value={fundAmount}
                   onChange={(e) => setFundAmount(Number(e.target.value) || 0)}
-                  className="w-full pl-6 pr-2 py-1.5 bg-[#0C0E17] border border-[#232840] rounded text-white text-xs font-mono focus:outline-none focus:border-indigo-500"
+                  className="w-full min-h-[44px] pl-7 pr-3 py-2 bg-[#0C0E17] border border-[#232840] rounded-lg text-white text-sm font-mono focus:outline-none focus:border-indigo-500"
                 />
               </div>
-              <Button
-                size="sm"
-                variant="primary"
-                onClick={handleFund}
-                disabled={fundAmount <= 0 || fundAmount > availableBalance}
-              >
-                Deposit
-              </Button>
-              <Button size="sm" variant="ghost" onClick={() => setShowFundInput(false)}>
-                Cancel
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  size="sm"
+                  variant="primary"
+                  onClick={handleFund}
+                  disabled={fundAmount <= 0 || fundAmount > availableBalance}
+                  className="flex-1 sm:flex-initial"
+                >
+                  Deposit
+                </Button>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setShowFundInput(false)}
+                  className="flex-1 sm:flex-initial"
+                >
+                  Cancel
+                </Button>
+              </div>
             </div>
           ) : (
             <Button
               size="sm"
               variant="secondary"
-              className="w-full text-xs"
+              className="w-full text-sm font-semibold"
               onClick={() => setShowFundInput(true)}
               disabled={availableBalance < 50}
             >
-              <Plus className="w-3.5 h-3.5 text-indigo-400 mr-1" />
+              <Plus className="w-4 h-4 text-indigo-400 mr-1" />
               Lock ₹ from Available Balance
             </Button>
           )}

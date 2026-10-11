@@ -114,8 +114,8 @@ export const ForecastPage: React.FC = () => {
         <h2 className="text-sm font-bold text-white uppercase tracking-wider">
           Weekly Cycle Milestones
         </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left">
+        <div className="overflow-x-auto w-full min-w-0">
+          <table className="min-w-full text-xs text-left">
             <thead>
               <tr className="border-b border-[#1E2238] text-slate-400 font-mono">
                 <th className="py-2.5 px-3">Milestone</th>

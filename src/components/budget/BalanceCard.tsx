@@ -140,7 +140,7 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
         {onOpenAddExpense && (
           <button
             onClick={onOpenAddExpense}
-            className="flex-1 min-w-[140px] px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold transition-all shadow-md shadow-indigo-600/20 active:scale-[0.98] flex items-center justify-center gap-2"
+            className="flex-1 min-w-[140px] min-h-[44px] px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-sm font-semibold transition-all shadow-md shadow-indigo-600/20 active:scale-[0.98] flex items-center justify-center gap-2"
           >
             <span>+ Log Expense</span>
           </button>
@@ -148,9 +148,9 @@ export const BalanceCard: React.FC<BalanceCardProps> = ({
         {onOpenSimulate && (
           <button
             onClick={onOpenSimulate}
-            className="flex-1 min-w-[140px] px-4 py-2.5 bg-[#191D32] hover:bg-[#232947] text-indigo-300 border border-indigo-500/30 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+            className="flex-1 min-w-[140px] min-h-[44px] px-4 py-2.5 bg-[#191D32] hover:bg-[#232947] text-indigo-300 border border-indigo-500/30 rounded-lg text-sm font-semibold transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
           >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-4 h-4 text-indigo-400" />
             <span>Simulate Ripple</span>
           </button>
         )}
